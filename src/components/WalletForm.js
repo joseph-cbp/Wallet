@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { connect } from 'react-redux';
+import { loginState } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
@@ -29,6 +30,13 @@ class WalletForm extends Component {
     }));
   };
 
+  handleSubmit = () => {
+    const { history, dispatch } = this.props;
+    const { email } = this.state;
+    dispatch(loginState(email));
+    history.push('/carteira');
+  };
+
   render() {
     const { button } = this.state;
     return (
@@ -55,17 +63,18 @@ class WalletForm extends Component {
           type="button"
           value="Entrar"
           disabled={ button }
-          onClick={ () => history.push('/carteira') }
+          onClick={ () => this.handleSubmit() }
         />
       </div>
     );
   }
 }
 
-export default WalletForm;
+export default connect()(WalletForm);
 
 WalletForm.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
