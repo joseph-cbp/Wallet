@@ -9,11 +9,6 @@ class Login extends React.Component {
     return (
       <div>
         Login
-        <input
-          type="button"
-          value="console"
-          onClick={ () => console.log(this.props) }
-        />
         <WalletForm history={ history } />
       </div>
     );

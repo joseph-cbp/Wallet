@@ -59,12 +59,18 @@ class WalletForm extends Component {
             onChange={ this.handleChange }
           />
         </label>
-        <input
+        {/* <input
           type="button"
           value="Entrar"
           disabled={ button }
           onClick={ () => this.handleSubmit() }
-        />
+        /> */}
+        <button
+          disabled={ button }
+          onClick={ () => this.handleSubmit() }
+        >
+          Entrar
+        </button>
       </div>
     );
   }
