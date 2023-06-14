@@ -1,10 +1,21 @@
 import React from 'react';
-import WalletForm from './components/WalletForm';
+import { Route, Switch } from 'react-router-dom/cjs/react-router-dom';
+import Login from './pages/Login';
+import Wallet from './pages/Wallet';
 
 function App() {
   return (
     <div>
-      <WalletForm />
+      <Switch>
+        <Route
+          path="/"
+          render={ (props) => <Login { ...props } /> }
+        />
+        <Route
+          path="/carteira"
+          component={ Wallet }
+        />
+      </Switch>
     </div>
   );
 }
