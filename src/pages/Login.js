@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import WalletForm from '../components/WalletForm';
+import Form from '../components/Form';
 
 class Login extends React.Component {
   render() {
@@ -9,7 +9,7 @@ class Login extends React.Component {
     return (
       <div>
         Login
-        <WalletForm history={ history } />
+        <Form history={ history } />
       </div>
     );
   }
