@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { actionFetchCurrencies } from '../redux/actions';
+import { actionAddExpenses } from '../redux/actions/addExpenses';
 
 class WalletForm extends Component {
   state = {
+    id: 0,
     tag: 'Alimentação',
     currencyInput: 'USD',
     desdescriptionInput: '',
@@ -16,6 +18,20 @@ class WalletForm extends Component {
     const { dispatch } = this.props;
     dispatch(actionFetchCurrencies());
   }
+
+  handleAddExpense = (event) => {
+    event.preventDefault();
+    const { dispatch } = this.props;
+    dispatch(actionAddExpenses(this.state));
+    this.setState((prev) => ({
+      tag: 'Alimentação',
+      currencyInput: 'USD',
+      desdescriptionInput: '',
+      paymentMethod: 'Dinheiro',
+      valueInput: 0,
+      id: prev.id + 1,
+    }));
+  };
 
   handleChange = ({ target: { name, value } }) => {
     this.setState(() => ({ [name]: value }));
@@ -94,6 +110,11 @@ class WalletForm extends Component {
             <option value="Saúde">Saúde</option>
           </select>
         </label>
+        <button
+          onClick={ this.handleAddExpense }
+        >
+          Adicionar despesas
+        </button>
       </>
     );
   }

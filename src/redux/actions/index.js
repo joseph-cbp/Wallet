@@ -1,4 +1,4 @@
-import getCurrentCurrency from '../../services/currencyAPI';
+import fetchData from '../../services/dataAPI';
 
 export const LOGIN_STATE = 'LOGIN_STATE';
 export const REQUEST_CURRENCY = 'REQUEST_CURRENCY';
@@ -26,7 +26,7 @@ export const requestCurrencySuccess = (currencies) => ({
 export const actionFetchCurrencies = () => async (dispatch) => {
   dispatch(requestCurrency());
   try {
-    const obj = await (getCurrentCurrency());
+    const obj = await (fetchData());
     const keys = Object.keys(obj);
     const toRemove = keys.indexOf('USDT');
     keys.splice(toRemove, 1);
