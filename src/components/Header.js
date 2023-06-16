@@ -23,13 +23,10 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  console.log(state);
-  return {
-    user: state.user,
-    wallet: state.wallet,
-  };
-};
+const mapStateToProps = (state) => ({
+  user: state.user,
+  wallet: state.wallet,
+});
 
 export default connect(mapStateToProps)(Header);
 

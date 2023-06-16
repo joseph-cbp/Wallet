@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { actionFetchCurrencies, loginState } from '../redux/actions';
-import getCurrentCurrency from '../services/currencyAPI';
+import { actionFetchCurrencies } from '../redux/actions';
 
 class WalletForm extends Component {
   componentDidMount() {
@@ -10,16 +9,8 @@ class WalletForm extends Component {
     dispatch(actionFetchCurrencies());
   }
 
-  createOptions = () => {
-    const { wallet: { currencies } } = this.props;
-    return (
-      <>
-        {currencies.forEach((value) => <option value={ value }>{value}</option>)}
-      </>
-    );
-  };
-
   render() {
+    const { wallet: { currencies } } = this.props;
     return (
       <>
         <label htmlFor="valueInput">
@@ -42,7 +33,16 @@ class WalletForm extends Component {
           id=""
           data-testid="currency-input"
         >
-          {createOptions}
+          {
+            currencies.map((currency) => (
+              <option
+                key={ currency }
+                value={ currency }
+              >
+                {currency}
+              </option>
+            ))
+          }
         </select>
       </>
     );
@@ -52,4 +52,12 @@ const mapStateToProps = (state) => ({
   user: state.user,
   wallet: state.wallet,
 });
-export default connect()(WalletForm);
+
+export default connect(mapStateToProps)(WalletForm);
+
+WalletForm.propTypes = {
+  wallet: PropTypes.shape({
+    currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
