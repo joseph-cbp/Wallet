@@ -4,13 +4,22 @@ import { connect } from 'react-redux';
 import { actionFetchCurrencies } from '../redux/actions';
 
 class WalletForm extends Component {
+  state = {
+    tag: '',
+  };
+
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(actionFetchCurrencies());
   }
 
+  handleChange = ({ target: { name, value } }) => {
+    this.setState(() => ({ [name]: value }));
+  };
+
   render() {
     const { wallet: { currencies } } = this.props;
+    const { tag } = this.state;
     return (
       <>
         <label htmlFor="valueInput">
@@ -44,6 +53,30 @@ class WalletForm extends Component {
             ))
           }
         </select>
+        <br />
+        <label htmlFor="paymentMethod">
+          Método de Pagamento
+          <select data-testid="method-input" name="paymentMethod">
+            <option value="cash">Dinheiro</option>
+            <option value="credit">Cartão de crédito</option>
+            <option value="debit">Cartão de débito</option>
+          </select>
+        </label>
+        <label htmlFor="category">
+          Categoria da despesa
+          <select
+            data-testid="tag-input"
+            name="category"
+            onChange={ this.handleChange }
+            value={ tag }
+          >
+            <option value="Alimentação">Alimentação</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Trabalho">Trabalho</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Saúde">Saúde</option>
+          </select>
+        </label>
       </>
     );
   }
