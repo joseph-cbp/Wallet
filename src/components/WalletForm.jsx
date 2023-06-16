@@ -5,7 +5,11 @@ import { actionFetchCurrencies } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
-    tag: '',
+    tag: 'Alimentação',
+    currencyInput: 'USD',
+    desdescriptionInput: '',
+    paymentMethod: 'Dinheiro',
+    valueInput: 0,
   };
 
   componentDidMount() {
@@ -19,7 +23,11 @@ class WalletForm extends Component {
 
   render() {
     const { wallet: { currencies } } = this.props;
-    const { tag } = this.state;
+    const { tag,
+      currencyInput,
+      desdescriptionInput,
+      paymentMethod,
+      valueInput } = this.state;
     return (
       <>
         <label htmlFor="valueInput">
@@ -27,20 +35,24 @@ class WalletForm extends Component {
             type="number"
             name="valueInput"
             data-testid="value-input"
+            value={ valueInput }
+            onChange={ this.handleChange }
           />
         </label>
         <label htmlFor="descriptionInput">
           <input
             type="text"
             name="desdescriptionInput"
-            id=""
             data-testid="description-input"
+            value={ desdescriptionInput }
+            onChange={ this.handleChange }
           />
         </label>
         <select
           name="currencyInput"
-          id=""
           data-testid="currency-input"
+          value={ currencyInput }
+          onChange={ this.handleChange }
         >
           {
             currencies.map((currency) => (
@@ -56,17 +68,22 @@ class WalletForm extends Component {
         <br />
         <label htmlFor="paymentMethod">
           Método de Pagamento
-          <select data-testid="method-input" name="paymentMethod">
+          <select
+            data-testid="method-input"
+            name="paymentMethod"
+            value={ paymentMethod }
+            onChange={ this.handleChange }
+          >
             <option value="cash">Dinheiro</option>
             <option value="credit">Cartão de crédito</option>
             <option value="debit">Cartão de débito</option>
           </select>
         </label>
-        <label htmlFor="category">
+        <label htmlFor="tag">
           Categoria da despesa
           <select
             data-testid="tag-input"
-            name="category"
+            name="tag"
             onChange={ this.handleChange }
             value={ tag }
           >
