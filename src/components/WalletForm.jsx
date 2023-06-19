@@ -8,10 +8,10 @@ class WalletForm extends Component {
   state = {
     id: 0,
     tag: 'Alimentação',
-    currencyInput: 'USD',
-    desdescriptionInput: '',
-    paymentMethod: 'Dinheiro',
-    valueInput: 0,
+    currency: 'USD',
+    description: '',
+    method: 'Dinheiro',
+    value: 0,
   };
 
   componentDidMount() {
@@ -25,10 +25,10 @@ class WalletForm extends Component {
     dispatch(actionAddExpenses(this.state));
     this.setState((prev) => ({
       tag: 'Alimentação',
-      currencyInput: 'USD',
-      desdescriptionInput: '',
-      paymentMethod: 'Dinheiro',
-      valueInput: '',
+      currency: 'USD',
+      description: '',
+      method: 'Dinheiro',
+      value: '',
       id: prev.id + 1,
     }));
   };
@@ -40,59 +40,59 @@ class WalletForm extends Component {
   render() {
     const { wallet: { currencies } } = this.props;
     const { tag,
-      currencyInput,
-      desdescriptionInput,
-      paymentMethod,
-      valueInput } = this.state;
+      currency,
+      description,
+      method,
+      value } = this.state;
     return (
       <>
-        <label htmlFor="valueInput">
+        <label htmlFor="value">
           <input
             type="number"
-            name="valueInput"
+            name="value"
             data-testid="value-input"
-            value={ valueInput }
+            value={ value }
             onChange={ this.handleChange }
           />
         </label>
         <label htmlFor="descriptionInput">
           <input
             type="text"
-            name="desdescriptionInput"
+            name="description"
             data-testid="description-input"
-            value={ desdescriptionInput }
+            value={ description }
             onChange={ this.handleChange }
           />
         </label>
         <select
-          name="currencyInput"
+          name="currency"
           data-testid="currency-input"
-          value={ currencyInput }
+          value={ currency }
           onChange={ this.handleChange }
         >
           {
-            currencies.map((currency) => (
+            currencies.map((dataCurrency) => (
               <option
-                key={ currency }
-                value={ currency }
+                key={ dataCurrency }
+                value={ dataCurrency }
               >
-                {currency}
+                {dataCurrency}
               </option>
             ))
           }
         </select>
         <br />
-        <label htmlFor="paymentMethod">
+        <label htmlFor="method">
           Método de Pagamento
           <select
             data-testid="method-input"
-            name="paymentMethod"
-            value={ paymentMethod }
+            name="method"
+            value={ method }
             onChange={ this.handleChange }
           >
-            <option value="cash">Dinheiro</option>
-            <option value="credit">Cartão de crédito</option>
-            <option value="debit">Cartão de débito</option>
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cartão de crédito">Cartão de crédito</option>
+            <option value="Cartão de débito">Cartão de débito</option>
           </select>
         </label>
         <label htmlFor="tag">

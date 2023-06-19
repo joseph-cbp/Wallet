@@ -18,8 +18,8 @@ const walletReducer = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       sumTotal: state.expenses.reduce((acc, curr) => {
-        const { currencyInput, valueInput, exchangeRates } = curr;
-        const actualValue = Number(exchangeRates[currencyInput].ask) * Number(valueInput);
+        const { currency, value, exchangeRates } = curr;
+        const actualValue = Number(exchangeRates[currency].ask) * Number(value);
         return ((acc + actualValue));
       }, 0).toFixed(2),
     };
