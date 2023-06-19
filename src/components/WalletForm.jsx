@@ -28,7 +28,7 @@ class WalletForm extends Component {
       currencyInput: 'USD',
       desdescriptionInput: '',
       paymentMethod: 'Dinheiro',
-      valueInput: 0,
+      valueInput: '',
       id: prev.id + 1,
     }));
   };

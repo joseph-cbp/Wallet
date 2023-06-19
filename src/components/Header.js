@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 
 class Header extends Component {
   render() {
-    const { user } = this.props;
+    const { user, wallet } = this.props;
+    const { sumTotal } = wallet;
     return (
       <div>
         <header>
@@ -12,7 +13,7 @@ class Header extends Component {
             {user.email}
           </p>
           <p data-testid="total-field">
-            0
+            {sumTotal}
           </p>
           <p data-testid="header-currency-field">
             BRL
@@ -33,5 +34,8 @@ export default connect(mapStateToProps)(Header);
 Header.propTypes = {
   user: PropTypes.shape({
     email: PropTypes.string.isRequired,
+  }).isRequired,
+  wallet: PropTypes.shape({
+    sumTotal: PropTypes.string.isRequired,
   }).isRequired,
 };

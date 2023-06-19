@@ -2,6 +2,7 @@ import fetchData from '../../services/dataAPI';
 
 export const REQUEST_EXPENSES_SUCCESS = 'REQUEST_EXPENSES_SUCCESS';
 export const ADD_EXPENSES = 'ADD_EXPENSES';
+export const SUM_TOTAL = 'SUM_TOTAL';
 
 export const requestCurrencySuccess = (currencies) => ({
   type: REQUEST_EXPENSES_SUCCESS,
@@ -12,26 +13,25 @@ export const addExpenses = (expenses) => ({
   payload: expenses,
 });
 
-// export const actionFetchCurrencies = () => async (dispatch) => {
-//   dispatch(requestCurrency());
-//   try {
-//     const obj = await (fetchCurrency());
-//     const keys = Object.keys(obj);
-//     const toRemove = keys.indexOf('USDT');
-//     keys.splice(toRemove, 1);
-//     dispatch(requestCurrencySuccess(keys));
-//   } catch (error) {
-//     dispatch(requestCurrencyFailure());
-//   }
-// };
+export const sumTotal = () => ({ type: SUM_TOTAL });
+
 export const actionAddExpenses = (state) => async (dispatch) => {
   const info = await fetchData();
-  const currentExchange = {};
+  const exchangeRates = {};
   Object.entries(info).forEach(([key, value]) => {
-    currentExchange[key] = value;
+    exchangeRates[key] = value;
+    // const { name, code, ask } = value;
+    // if (key !== 'USDT') {
+    //   exchangeRates[key] = {
+    //     code,
+    //     name,
+    //     ask,
+    //   };
+    // }
   });
   dispatch(addExpenses({
     ...state,
-    currentExchange,
+    exchangeRates,
   }));
+  dispatch(sumTotal());
 };
