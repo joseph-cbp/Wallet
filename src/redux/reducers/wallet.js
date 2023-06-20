@@ -1,7 +1,7 @@
 import { REQUEST_CURRENCY,
   REQUEST_CURRENCY_FAILURE, REQUEST_CURRENCY_SUCCESS } from '../actions';
 import { ADD_EXPENSES, SUM_TOTAL } from '../actions/addExpenses';
-import { EDIT_EXPENSE } from '../actions/editExpenses';
+import { EDIT_EXPENSE, REMOVE_EXPENSE } from '../actions/editExpenses';
 
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INITIAL_STATE = {
@@ -16,6 +16,11 @@ const INITIAL_STATE = {
 
 const walletReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+  case REMOVE_EXPENSE:
+    return {
+      ...state,
+      expenses: Object.keys(state.expenses).filter((key) => key !== action.payload),
+    };
   case EDIT_EXPENSE:
     return {
       ...state,
