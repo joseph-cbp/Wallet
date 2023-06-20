@@ -6,7 +6,6 @@ import { editExpense } from '../redux/actions/editExpenses';
 class Table extends Component {
   handleEdit = (expense) => {
     const { dispatch } = this.props;
-    // event.preventDefault();
     dispatch(editExpense(expense));
   };
 
@@ -52,7 +51,10 @@ class Table extends Component {
                   <td>{convertValue}</td>
                   <td>Real</td>
                   <td>
-                    <button data-testid="delete-btn">
+                    <button
+                      data-testid="delete-btn"
+                      onClick={ () => this.showGlobal() }
+                    >
                       Excluir
                     </button>
                     <button

@@ -44,6 +44,7 @@ class WalletForm extends Component {
       description,
       method,
       value } = this.state;
+
     return (
       <>
         <label htmlFor="value">

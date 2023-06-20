@@ -12,7 +12,6 @@ const INITIAL_STATE = {
   isLoading: false,
   sumTotal: '0.00',
   editExpense: {},
-  editOn: false,
 };
 
 const walletReducer = (state = INITIAL_STATE, action) => {
@@ -21,7 +20,7 @@ const walletReducer = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       editExpense: action.payload,
-      editOn: true,
+      editor: true,
     };
   case SUM_TOTAL:
     return {
