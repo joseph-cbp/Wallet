@@ -19,7 +19,7 @@ const walletReducer = (state = INITIAL_STATE, action) => {
   case REMOVE_EXPENSE:
     return {
       ...state,
-      expenses: Object.keys(state.expenses).filter((key) => key !== action.payload),
+      expenses: action.payload,
     };
   case EDIT_EXPENSE:
     return {

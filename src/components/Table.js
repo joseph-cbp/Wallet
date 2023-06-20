@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { editExpense, removeExpense } from '../redux/actions/editExpenses';
+import { sumTotal } from '../redux/actions/addExpenses';
 
 class Table extends Component {
   handleEdit = (expense) => {
@@ -10,8 +11,10 @@ class Table extends Component {
   };
 
   handleRemove = (id) => {
-    const { dispatch } = this.props;
-    dispatch(removeExpense(id));
+    const { dispatch, wallet: { expenses } } = this.props;
+    const newArr = expenses.filter((expense) => expense.id !== id);
+    dispatch(removeExpense(newArr));
+    dispatch(sumTotal());
   };
 
   render() {
