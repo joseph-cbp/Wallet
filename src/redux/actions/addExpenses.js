@@ -20,14 +20,6 @@ export const actionAddExpenses = (state) => async (dispatch) => {
   const exchangeRates = {};
   Object.entries(info).forEach(([key, value]) => {
     exchangeRates[key] = value;
-    // const { name, code, ask } = value;
-    // if (key !== 'USDT') {
-    //   exchangeRates[key] = {
-    //     code,
-    //     name,
-    //     ask,
-    //   };
-    // }
   });
   dispatch(addExpenses({
     ...state,

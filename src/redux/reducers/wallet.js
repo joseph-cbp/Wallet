@@ -1,6 +1,7 @@
 import { REQUEST_CURRENCY,
   REQUEST_CURRENCY_FAILURE, REQUEST_CURRENCY_SUCCESS } from '../actions';
 import { ADD_EXPENSES, SUM_TOTAL } from '../actions/addExpenses';
+import { EDIT_EXPENSE } from '../actions/editExpenses';
 
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INITIAL_STATE = {
@@ -10,10 +11,18 @@ const INITIAL_STATE = {
   idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
   isLoading: false,
   sumTotal: '0.00',
+  editExpense: {},
+  editOn: false,
 };
 
 const walletReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+  case EDIT_EXPENSE:
+    return {
+      ...state,
+      editExpense: action.payload,
+      editOn: true,
+    };
   case SUM_TOTAL:
     return {
       ...state,
