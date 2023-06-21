@@ -59,12 +59,6 @@ class Form extends Component {
             onChange={ this.handleChange }
           />
         </label>
-        {/* <input
-          type="button"
-          value="Entrar"
-          disabled={ button }
-          onClick={ () => this.handleSubmit() }
-        /> */}
         <button
           disabled={ button }
           onClick={ () => this.handleSubmit() }

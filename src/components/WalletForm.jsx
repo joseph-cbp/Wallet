@@ -19,14 +19,6 @@ class WalletForm extends Component {
     dispatch(actionFetchCurrencies());
   }
 
-  componentWillUnmount() {
-    const { wallet: { editor } } = this.props;
-    if (editor === true) {
-      this.handleEdit();
-      return editor;
-    }
-  }
-
   handleAddExpense = (event) => {
     event.preventDefault();
     const { dispatch } = this.props;
@@ -38,18 +30,6 @@ class WalletForm extends Component {
       methodInput: 'Dinheiro',
       valueInput: '',
       id: prev.id + 1,
-    }));
-  };
-
-  handleEdit = () => {
-    const { wallet: editExpense } = this.props;
-    const { tag, currency, description, method, value } = editExpense;
-    this.setState(() => ({
-      tagInput: tag,
-      currencyInput: currency,
-      descriptionInput: description,
-      methodInput: method,
-      valueInput: value,
     }));
   };
 
