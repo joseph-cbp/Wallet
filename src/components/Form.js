@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginState } from '../redux/actions';
+import '../pages/Login.css';
 
 class Form extends Component {
   state = {
@@ -40,28 +41,39 @@ class Form extends Component {
   render() {
     const { button } = this.state;
     return (
-      <div>
-        <label htmlFor="email">
-          Email
+      <div className="input-container">
+        <label
+          htmlFor="email"
+          className="label email-label"
+        >
           <input
+            id="email"
+            className="form-input email-input"
             type="text"
             name="email"
             data-testid="email-input"
             onChange={ this.handleChange }
+            placeholder="Email"
           />
         </label>
-        <label htmlFor="password">
-          Password
+
+        <label
+          htmlFor="password"
+          className="label password-label"
+        >
           <input
+            className="form-input password-input"
             type="password"
             name="password"
             data-testid="password-input"
             onChange={ this.handleChange }
+            placeholder="Senha"
           />
         </label>
         <button
           disabled={ button }
           onClick={ () => this.handleSubmit() }
+          className="form-button"
         >
           Entrar
         </button>
