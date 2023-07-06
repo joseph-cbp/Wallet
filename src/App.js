@@ -9,11 +9,11 @@ function App() {
       <Switch>
         <Route
           exact
-          path="/"
+          path="/Wallet"
           render={ (props) => <Login { ...props } /> }
         />
         <Route
-          path="/carteira"
+          path="/Wallet/carteira"
           component={ Wallet }
         />
       </Switch>

@@ -35,7 +35,7 @@ class Form extends Component {
     const { history, dispatch } = this.props;
     const { email } = this.state;
     dispatch(loginState(email));
-    history.push('/carteira');
+    history.push('/Wallet/carteira');
   };
 
   render() {
