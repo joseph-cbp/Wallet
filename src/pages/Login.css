@@ -41,12 +41,40 @@
     border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 20px;
+    color: #ddd;
 }
 .form-button:disabled {
     background-color: #0039e583;
-    width: 330px;
-    height: 40px;
-    border-radius: 5px;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    color: #eee;
+
+}
+
+@media (max-width: 450px) {
+
+    .login-container {
+        width: 250px;
+      }
+      .login-text {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+    .form-input {
+        height: 30px;
+        width: 200px;
+        margin-top: 5px;
+    }
+
+    .form-input::placeholder {
+        text-align: left;
+        padding: 3px;
+        font-size: 15px;
+    }
+    .form-button {
+        height: 30px;
+        width: 200px;
+         border-radius: 5px;
+         margin-top: 10px;
+         margin-bottom: 20px;
+         font-size: 15px;
+     }
 }
