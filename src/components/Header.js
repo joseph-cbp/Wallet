@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import '../pages/Wallet.css';
 
 class Header extends Component {
   render() {
@@ -8,16 +9,25 @@ class Header extends Component {
     const { sumTotal } = wallet;
     return (
       <div>
-        <header>
-          <p data-testid="email-field">
-            {user.email}
-          </p>
-          <p data-testid="total-field">
-            {sumTotal}
-          </p>
-          <p data-testid="header-currency-field">
-            BRL
-          </p>
+        <header className="header-menu">
+          <div
+            data-testid="header-currency-field"
+            className="header-info"
+          >
+            Wallet
+          </div>
+          <div
+            data-testid="total-field"
+            className="header-info total-field"
+          >
+            {`Total de Despesas: ${sumTotal} BRL`}
+          </div>
+          <div
+            data-testid="email-field"
+            className="header-info"
+          >
+            {`E-mail: ${user.email}`}
+          </div>
         </header>
       </div>
     );
